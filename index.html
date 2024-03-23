@@ -30,9 +30,10 @@
        // console.log('The computers choice is: ' + computerChoice);
         let computerChoice = getComputerChoice();
         console.log(computerChoice);
-        let userInput = prompt('Choose rock, paper or scissors', '');
+
+       // let userInput = prompt('Choose rock, paper or scissors', '');
         console.log(userInput);
-        let round1 = playaRound(userInput, computerChoice);
+       // let round1 = playaRound(userInput, computerChoice);
 
         function playaRound (user, computer) {
             if(user === 'rock' && computer === 'scissors') {
@@ -53,6 +54,16 @@
             }
         }
 
+        function getUserInput () {
+            let userInput = prompt('Choose rock, paper, or scissors', '').toLowerCase;
+            return userInput;
+        }
+
+
+        function playGame () {
+            
+
+        }
         //console.log(round1);
     </script>
 
