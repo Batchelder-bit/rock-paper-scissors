@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<HTML>
+    <meta chaset="utf-8">
+    <head>
+    <title>
+        Rock, Paper, Scissors
+    </title>
+    </head>
+
+    <body>
+        <h1>Rock Paper Scissors</h1>
+        <div></div>
+    </body>
+    <script>
+
+    
+
+        function getComputerChoice() {
+            const randomChoice = Math.floor(Math.random() * 3);
+            if(randomChoice === 0) {
+                return 'rock';
+            } else if(randomChoice === 1) {
+                return 'paper';
+            } else {
+                return 'scissors';
+            }
+        }
+
+        //const computerChoice = getComputerChoice();
+       // console.log('The computers choice is: ' + computerChoice);
+        let computerChoice = getComputerChoice();
+        console.log(computerChoice);
+        let userInput = prompt('Choose rock, paper or scissors', '');
+        console.log(userInput);
+        let round1 = playaRound(userInput, computerChoice);
+
+        function playaRound (user, computer) {
+            if(user === 'rock' && computer === 'scissors') {
+                console.log('Rock Beat Scissors; You WIN');
+                return 'WIN';
+            } else if (user === 'paper' && computer === 'rock') {
+                console.log('Paper beats Rock; You WIN');
+                return 'WIN';
+            } else if (user === 'scissors' && computer === 'paper') {
+                console.log('Scissors beats Paper; You WIN');
+                return 'WIN';
+            } else if (user === computer) {
+                console.log('You tied, neither of you win.')
+                return 'TIE';
+            } else {
+                console.log('You lost, ' + user + ' gets beaten by ' + computer + '.');
+                return 'LOSE';
+            }
+        }
+
+        //console.log(round1);
+    </script>
+
+</HTML>
