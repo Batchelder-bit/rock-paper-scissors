@@ -13,8 +13,9 @@
     </body>
     <script>
 
-    
-
+        let userWinCount = 0;
+        let computerWinCount = 0;
+        //This function gets the computer choice for the following round;
         function getComputerChoice() {
             const randomChoice = Math.floor(Math.random() * 3);
             if(randomChoice === 0) {
@@ -26,44 +27,70 @@
             }
         }
 
+        //This function gets the users input, can be called right before playaRound;
+        function getUserInput () {
+            let userInput = prompt('Choose rock, paper, or scissors', '');
+            return userInput.toLowerCase();
+        }
+
+        //Commented out the following lines as they were for original testing stuff.
         //const computerChoice = getComputerChoice();
        // console.log('The computers choice is: ' + computerChoice);
-        let computerChoice = getComputerChoice();
-        console.log(computerChoice);
+        //let computerChoice = getComputerChoice();
+       // console.log(computerChoice);
 
        // let userInput = prompt('Choose rock, paper or scissors', '');
-        console.log(userInput);
+      //  console.log(userInput);
        // let round1 = playaRound(userInput, computerChoice);
 
         function playaRound (user, computer) {
             if(user === 'rock' && computer === 'scissors') {
                 console.log('Rock Beat Scissors; You WIN');
+                userWinCount++
                 return 'WIN';
             } else if (user === 'paper' && computer === 'rock') {
                 console.log('Paper beats Rock; You WIN');
+                userWinCount++
                 return 'WIN';
             } else if (user === 'scissors' && computer === 'paper') {
                 console.log('Scissors beats Paper; You WIN');
+                userWinCount++
                 return 'WIN';
             } else if (user === computer) {
                 console.log('You tied, neither of you win.')
                 return 'TIE';
             } else {
                 console.log('You lost, ' + user + ' gets beaten by ' + computer + '.');
+                computerWinCount++
                 return 'LOSE';
             }
         }
 
-        function getUserInput () {
-            let userInput = prompt('Choose rock, paper, or scissors', '').toLowerCase;
-            return userInput;
-        }
-
 
         function playGame () {
-            
-
+            let roundOneUserInput = getUserInput();
+            let roundOneComputerChoice = getComputerChoice();
+            let roundResults = playaRound(roundOneUserInput, roundOneComputerChoice);
+            console.log('The user has won ' + userWinCount + ' games. The computer has won ' + computerWinCount + ' games.')
+            return roundResults;
         }
+
+        let round1 = playGame();
+        let round2 = playGame();
+        let round3 = playGame();
+        let round4 = playGame();
+        let round5 = playGame();
+
+        if(userWinCount >= 3) {
+            console.log('You WON the game!');
+        } else if (userWinCount === 2 && computerWinCount == 2) {
+            console.log('You tied with the machine');
+        } else if (userWinCount > computerWinCount){
+            console.log('You WON the game!');
+        } else {
+            console.log('The computer has won');
+        }
+
         //console.log(round1);
     </script>
 
