@@ -14,6 +14,7 @@
             <button id="rock">ROCK</button>
             <button id="paper">PAPER</button>
             <button id="scissors">SCISSORS</button>
+            <div id="scoreboard"></div>
         </div>
     </body>
     <script>
@@ -37,6 +38,13 @@
             let userInput = prompt('Choose rock, paper, or scissors', '');
             return userInput.toLowerCase();
         }
+
+        const rock = document.querySelector('#rock');
+        const paper = document.querySelector('#paper');
+        const scissors = document.querySelector('#scissors');
+        const scoreboard = document.querySelector('#scoreboard');
+
+        const userChoseRock = playaRound(rock, computer);
 
         //Commented out the following lines as they were for original testing stuff.
         //const computerChoice = getComputerChoice();
@@ -95,6 +103,8 @@
         } else {
             console.log('The computer has won');
         }
+
+
 
         //console.log(round1);
     </script>
