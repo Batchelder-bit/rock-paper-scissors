@@ -57,23 +57,34 @@
        // let round1 = playaRound(userInput, computerChoice);
 
         function playaRound (user, computer) {
+            const whoWonText = document.createElement('div');
             if(user === 'rock' && computer === 'scissors') {
-                console.log('Rock Beat Scissors; You WIN');
+            //    console.log('Rock Beat Scissors; You WIN');
+                whoWonText.textContent = 'Rock Beat Scissors; You WIN'; 
+                scoreboard.appendChild(whoWonText);
                 userWinCount++
                 return 'WIN';
             } else if (user === 'paper' && computer === 'rock') {
-                console.log('Paper beats Rock; You WIN');
+            //    console.log('Paper beats Rock; You WIN');
+                whoWonText.textContent = 'Paper beats Rock; You WIN';
+                scoreboard.appendChild(whoWonText);
                 userWinCount++
                 return 'WIN';
             } else if (user === 'scissors' && computer === 'paper') {
-                console.log('Scissors beats Paper; You WIN');
+            //    console.log('Scissors beats Paper; You WIN');
+                whoWonText.textContent = 'Scissors beats Paper; You WIN';
+                scoreboard.appendChild(whoWonText);
                 userWinCount++
                 return 'WIN';
             } else if (user === computer) {
-                console.log('You tied, neither of you win.')
+            //    console.log('You tied, neither of you win.');
+                whoWonText.textContent = 'You tied, neither of you win.';
+                scoreboard.appendChild(whoWonText);
                 return 'TIE';
             } else {
-                console.log('You lost, ' + user + ' gets beaten by ' + computer + '.');
+            //    console.log('You lost, ' + user + ' gets beaten by ' + computer + '.');
+                whoWonText.textContent = ('You lost, ' + user + ' gets beaten by ' + computer + '.')
+                scoreboard.appendChild(whoWonText);
                 computerWinCount++
                 return 'LOSE';
             }
@@ -81,10 +92,12 @@
 
 
         function playGame () {
+            let currentScore = document.createElement('div');
             let roundOneUserInput = getUserInput();
             let roundOneComputerChoice = getComputerChoice();
             let roundResults = playaRound(roundOneUserInput, roundOneComputerChoice);
-            console.log('The user has won ' + userWinCount + ' games. The computer has won ' + computerWinCount + ' games.')
+            currentScore.textContent = ('The user has won ' + userWinCount + ' games. The computer has won ' + computerWinCount + ' games.')
+            scoreboard.appendChild(currentScore);
             return roundResults;
         }
 
@@ -95,13 +108,25 @@
         // let round5 = playGame();
 
         if(userWinCount >= 3) {
-            console.log('You WON the game!');
+            let winnerText = document.createElement('div');
+            winnerText.textContent = 'You WON the game!';
+            scoreboard.appendChild(winnerText);
+        //    console.log('You WON the game!');
         } else if (userWinCount == computerWinCount) {
-            console.log('You tied with the machine');
+            let tiedText = document.createElement('div');
+            tiedText.textContent = 'You tied with the machine';
+            scoreboard.appendChild(tiedText);
+        //    console.log('You tied with the machine');
         } else if (userWinCount > computerWinCount){
-            console.log('You WON the game!');
+            let winnerText = document.createElement('div');
+            winnerText.textContent = 'You WON the game!';
+            scoreboard.appendChild(winnerText);
+        //    console.log('You WON the game!');
         } else {
-            console.log('The computer has won');
+            let loserText = document.createElement('div');
+            loserText.textContent = 'The computer has won';
+            scoreboard.appendChild(loserText);
+        //    console.log('The computer has won');
         }
 
 
