@@ -43,8 +43,20 @@
         const paper = document.querySelector('#paper');
         const scissors = document.querySelector('#scissors');
         const scoreboard = document.querySelector('#scoreboard');
+        let emptyComputerChoice;
+        let gameCount = 0;
 
-        const userChoseRock = playaRound(rock, computer);
+        rock.addEventListener ("click", () => {
+            playGame('rock');
+        });
+        paper.addEventListener ("click", () => {
+            playGame('paper');
+        });
+        scissors.addEventListener ("click", () => {
+            playGame('scissors');
+        });
+
+
 
         //Commented out the following lines as they were for original testing stuff.
         //const computerChoice = getComputerChoice();
@@ -91,14 +103,48 @@
         }
 
 
-        function playGame () {
+        function playGame (roundOneUserInput, roundOneComputerChoice) {
             let currentScore = document.createElement('div');
-            let roundOneUserInput = getUserInput();
-            let roundOneComputerChoice = getComputerChoice();
+        //    let roundOneUserInput = getUserInput();
+            roundOneComputerChoice = getComputerChoice();
             let roundResults = playaRound(roundOneUserInput, roundOneComputerChoice);
-            currentScore.textContent = ('The user has won ' + userWinCount + ' games. The computer has won ' + computerWinCount + ' games.')
+            currentScore.textContent = ('The user has won ' + userWinCount + ' games. The computer has won ' + computerWinCount + ' games.');
             scoreboard.appendChild(currentScore);
+            gameCount++;
+
+            if (userWinCount >= 3 && gameCount == 5) {
+            let winnerText = document.createElement('div');
+            winnerText.textContent = 'You WON the game!';
+            scoreboard.appendChild(winnerText);
+            userWinCount = 0;
+            computerWinCount = 0;
+        //    console.log('You WON the game!');
+            } else if (userWinCount == computerWinCount && gameCount == 5) {
+            let tiedText = document.createElement('div');
+            tiedText.textContent = 'You tied with the machine';
+            scoreboard.appendChild(tiedText);
+            userWinCount = 0;
+            computerWinCount = 0;
+        //    console.log('You tied with the machine');
+            } else if (userWinCount > computerWinCount && gameCount == 5){
+            let winnerText = document.createElement('div');
+            winnerText.textContent = 'You WON the game!';
+            scoreboard.appendChild(winnerText);
+            userWinCount = 0;
+            computerWinCount = 0;
+        //    console.log('You WON the game!');
+            } else if (userWinCount < computerWinCount && gameCount == 5) {
+            let loserText = document.createElement('div');
+            loserText.textContent = 'The computer has won';
+            scoreboard.appendChild(loserText);
+            userWinCount = 0;
+            computerWinCount = 0;
+        //    console.log('The computer has won');
+            }
+              else {
+            console.log('Game has not finished');
             return roundResults;
+              }
         }
 
         // let round1 = playGame();
@@ -107,27 +153,6 @@
         // let round4 = playGame();
         // let round5 = playGame();
 
-        if(userWinCount >= 3) {
-            let winnerText = document.createElement('div');
-            winnerText.textContent = 'You WON the game!';
-            scoreboard.appendChild(winnerText);
-        //    console.log('You WON the game!');
-        } else if (userWinCount == computerWinCount) {
-            let tiedText = document.createElement('div');
-            tiedText.textContent = 'You tied with the machine';
-            scoreboard.appendChild(tiedText);
-        //    console.log('You tied with the machine');
-        } else if (userWinCount > computerWinCount){
-            let winnerText = document.createElement('div');
-            winnerText.textContent = 'You WON the game!';
-            scoreboard.appendChild(winnerText);
-        //    console.log('You WON the game!');
-        } else {
-            let loserText = document.createElement('div');
-            loserText.textContent = 'The computer has won';
-            scoreboard.appendChild(loserText);
-        //    console.log('The computer has won');
-        }
 
 
 
